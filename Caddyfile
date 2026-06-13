@@ -1,0 +1,69 @@
+# Caddyfile — reverse proxy with automatic HTTPS for ${DOMAIN}.
+#
+# Caddy 2 will obtain and renew a Let's Encrypt certificate automatically as long as:
+#   1) Ports 80 and 443 are open on the VPS firewall (Hostinger panel + ufw).
+#   2) DNS A (and AAAA, if you use IPv6) records for ${DOMAIN} and www.${DOMAIN}
+#      point at the VPS public IP.
+#
+# Variables {$DOMAIN} and {$ACME_EMAIL} come from the environment (docker-compose).
+
+{
+	email {$ACME_EMAIL}
+	# Use Let's Encrypt staging instead while testing DNS / certificate issuance
+	# to avoid hitting the production rate limit:
+	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+	servers {
+		protocols h1 h2 h3
+	}
+}
+
+# Redirect apex + www to the canonical apex over HTTPS automatically.
+www.{$DOMAIN} {
+	redir https://{$DOMAIN}{uri} permanent
+}
+
+{$DOMAIN} {
+	encode zstd gzip
+
+	# --- Security headers ---------------------------------------------------
+	header {
+		Strict-Transport-Security  "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options     "nosniff"
+		X-Frame-Options            "SAMEORIGIN"
+		Referrer-Policy            "strict-origin-when-cross-origin"
+		Permissions-Policy         "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+		X-XSS-Protection           "0"
+		Cross-Origin-Opener-Policy "same-origin"
+		-Server
+		-X-Powered-By
+	}
+
+	# --- Long-cache static assets ------------------------------------------
+	@nextStatic path /_next/static/*
+	header @nextStatic Cache-Control "public, max-age=31536000, immutable"
+
+	@nextImage path /_next/image*
+	header @nextImage Cache-Control "public, max-age=60, must-revalidate"
+
+	@assets path /favicon.ico /robots.txt /sitemap.xml /og/* /images/* /icons/* /brand/*
+	header @assets Cache-Control "public, max-age=86400"
+
+	# --- Reverse proxy to the Next.js standalone server --------------------
+	reverse_proxy web:3000 {
+		# SSE friendly — disable response buffering on streaming endpoints
+		# (chat, EventSource, route handlers using ReadableStream).
+		flush_interval -1
+
+		header_up X-Real-IP {remote_host}
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+		header_up X-Forwarded-Host {host}
+	}
+
+	# --- Access + error logs ----------------------------------------------
+	log {
+		output stdout
+		format json
+		level INFO
+	}
+}

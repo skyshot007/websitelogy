@@ -1,0 +1,183 @@
+# docker-compose.yml — Hostinger VPS deployment
+#
+# Services:
+#   web    — Next.js standalone server  (always on)
+#   caddy  — Caddy reverse proxy with automatic HTTPS  (always on)
+#   db     — Postgres 16  (profile: selfhost)
+#   minio  — Object storage  (profile: selfhost)
+#   n8n    — Workflow automation  (profile: automation)
+#
+# Bring up website only:
+#   docker compose up -d --build
+#
+# Enable n8n later:
+#   docker compose --profile automation up -d
+#
+# Logs:
+#   docker compose logs -f web
+#   docker compose logs -f caddy
+#
+# Redeploy after git pull:
+#   docker compose up -d --build web
+#
+# Notes:
+#   - Caddy listens on 80/443 directly on the host. Make sure UFW/iptables allow these.
+#   - Postgres / MinIO / n8n are under separate profiles — not started by default.
+
+name: anil-astro
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        FLAG_SALT: ${FLAG_SALT:-anil_astro+1115}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://astroaniljoshi.tech}
+        NEXT_PUBLIC_SITE_NAME: ${NEXT_PUBLIC_SITE_NAME:-Anil Astro}
+        NEXT_PUBLIC_CONTACT_EMAIL: ${NEXT_PUBLIC_CONTACT_EMAIL:-hello@astroaniljoshi.tech}
+        NEXT_PUBLIC_CONTACT_PHONE: ${NEXT_PUBLIC_CONTACT_PHONE:-+91 00000 00000}
+    image: anil-astro/web:latest
+    container_name: anil-astro-web
+    restart: unless-stopped
+    expose:
+      - "3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      NEXT_TELEMETRY_DISABLED: "1"
+      FLAG_SALT: ${FLAG_SALT:-anil_astro+1115}
+    networks:
+      - edge
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: anil-astro-caddy
+    restart: unless-stopped
+    depends_on:
+      web:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"   # HTTP/3
+    environment:
+      DOMAIN: ${DOMAIN:?Set DOMAIN in .env (e.g. anil-astro.com)}
+      ACME_EMAIL: ${ACME_EMAIL:?Set ACME_EMAIL in .env for Let's Encrypt}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - edge
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ---------------------------------------------------------------------------
+  # Phase 1.5 services — disabled by default. Enable with:
+  #   docker compose --profile selfhost up -d
+  # ---------------------------------------------------------------------------
+
+  db:
+    image: postgres:16-alpine
+    container_name: anil-astro-db
+    restart: unless-stopped
+    profiles: ["selfhost"]
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-anil_astro}
+      POSTGRES_USER: ${POSTGRES_USER:-anil_astro}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me-in-phase-1-5}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - edge
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-anil_astro}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  minio:
+    image: minio/minio:latest
+    container_name: anil-astro-minio
+    restart: unless-stopped
+    profiles: ["selfhost"]
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minio}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-change-me-in-phase-1-5}
+    volumes:
+      - minio_data:/data
+    networks:
+      - edge
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # ---------------------------------------------------------------------------
+  # n8n automation — disabled by default. Enable with:
+  #   docker compose --profile automation up -d
+  #
+  # Access at: https://n8n.astroaniljoshi.tech  (after adding DNS + Caddyfile entry)
+  # Or tunnel via: ssh -L 5678:localhost:5678 deploy@YOUR_VPS_IP  → http://localhost:5678
+  #
+  # To add the subdomain, append to Caddyfile:
+  #   n8n.astroaniljoshi.tech {
+  #     reverse_proxy n8n:5678
+  #   }
+  # ---------------------------------------------------------------------------
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: anil-astro-n8n
+    restart: unless-stopped
+    profiles: ["automation"]
+    environment:
+      N8N_HOST: n8n.astroaniljoshi.tech
+      N8N_PORT: 5678
+      N8N_PROTOCOL: https
+      WEBHOOK_URL: https://n8n.astroaniljoshi.tech/
+      N8N_BASIC_AUTH_ACTIVE: "true"
+      N8N_BASIC_AUTH_USER: ${N8N_BASIC_AUTH_USER:-admin}
+      N8N_BASIC_AUTH_PASSWORD: ${N8N_BASIC_AUTH_PASSWORD:?Set N8N_BASIC_AUTH_PASSWORD in .env}
+      GENERIC_TIMEZONE: Asia/Kolkata
+      N8N_LOG_LEVEL: warn
+    volumes:
+      - n8n_data:/home/node/.n8n
+    expose:
+      - "5678"
+    networks:
+      - edge
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  edge:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:
+  pg_data:
+  minio_data:
+  n8n_data:

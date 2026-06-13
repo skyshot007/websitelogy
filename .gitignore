@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# portrait — raw source photo stays local; the processed anil.* IS committed
+# so deploys do not need a separate scp / re-process step on the VPS.
+/public/images/portrait/source.*

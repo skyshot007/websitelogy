@@ -1,26 +1,288 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   DESIGN TOKENS — "Temple at twilight"
+   Two palettes share the gold accent so the brand stays unified.
+   Dawn (default light) | Night Sky (used in hero, CTA bands, footer)
+   ============================================================ */
+
+@theme {
+  /* Dawn palette */
+  --color-ivory: #faf6ee;
+  --color-parchment: #f1e9d7;
+  --color-sand: #e8dec6;
+  --color-lotus: #e9cfc8;
+  --color-sage: #7c8c7a;
+  --color-ink: #1a1a1a;
+  --color-muted: #5b5b5b;
+
+  /* Night Sky palette */
+  --color-midnight: #0b1437;
+  --color-astral: #171b3d;
+  --color-cream: #f4ecdb;
+
+  /* Accents */
+  --color-gold: #c9a55c;
+  --color-gold-soft: #e7cf9b;
+  --color-vermillion: #b8423a;
+
+  /* Functional */
+  --color-success: #3f7a5e;
+  --color-warning: #c58a2e;
+  --color-error: #a0322b;
+
+  /* Surface aliases used by primitives */
+  --color-background: var(--color-ivory);
+  --color-foreground: var(--color-ink);
+  --color-border: rgba(26, 26, 26, 0.08);
+  --color-ring: var(--color-gold);
+
+  /* Typography */
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
+  --font-devanagari: var(--font-devanagari), ui-serif, serif;
+
+  /* Layout */
+  --container-page: 1200px;
+
+  /* Easing presets */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quint: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-soft: 600ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ============================================================
+   BASE LAYER
+   ============================================================ */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    line-height: 1.55;
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-midnight);
+  }
+
+  /* Fluid typography */
+  h1,
+  .h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 4vw + 1rem, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-variation-settings: 'opsz' 144, 'SOFT' 50;
+  }
+
+  h2,
+  .h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2rem, 2.5vw + 1rem, 3.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    font-variation-settings: 'opsz' 96, 'SOFT' 50;
+  }
+
+  h3,
+  .h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 1.2vw + 1rem, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  h4,
+  .h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.125rem, 0.5vw + 1rem, 1.375rem);
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: clamp(1rem, 0.2vw + 0.95rem, 1.0625rem);
+    line-height: 1.7;
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    font-variation-settings: 'opsz' 14;
+  }
+
+  .display-italic {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-variation-settings: 'opsz' 96, 'SOFT' 100;
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+@utility container-page {
+  width: 100%;
+  max-width: var(--container-page);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-page {
+    padding-inline: 4rem;
+  }
+}
+
+@utility section-pad {
+  padding-block: clamp(4rem, 8vw, 8rem);
+}
+
+@utility surface-ivory {
+  background-color: var(--color-ivory);
+  color: var(--color-ink);
+}
+
+@utility surface-parchment {
+  background-color: var(--color-parchment);
+  color: var(--color-ink);
+}
+
+@utility surface-midnight {
+  background-color: var(--color-midnight);
+  color: var(--color-cream);
+}
+
+@utility surface-astral {
+  background-color: var(--color-astral);
+  color: var(--color-cream);
+}
+
+@utility hairline {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--color-gold) 50%,
+    transparent 100%
+  );
+  height: 1px;
+}
+
+@utility gold-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 250ms var(--ease-soft);
+}
+
+@utility gold-underline-hover {
+  background-size: 0% 1px;
+}
+
+.gold-underline-hover:hover,
+.group:hover .gold-underline-hover {
+  background-size: 100% 1px;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes drift-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(8px, -10px, 0);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.85;
+  }
+}
+
+.animate-drift {
+  animation: drift-slow 16s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.animate-breathe {
+  animation: breathe 5s ease-in-out infinite;
 }
