@@ -2,7 +2,7 @@
 
 # ---------- Stage 1: deps -----------------------------------------------------
 # Install full dependencies once. This layer is cached until lockfile changes.
-FROM node:20-alpine AS deps
+FROM node:22-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
@@ -20,7 +20,7 @@ RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store \
 
 # ---------- Stage 2: builder --------------------------------------------------
 # Build the Next.js app into the standalone output.
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 
 ENV NEXT_TELEMETRY_DISABLED=1 \
@@ -49,7 +49,7 @@ RUN pnpm build
 
 # ---------- Stage 3: runner ---------------------------------------------------
 # Minimal runtime image — only the standalone server + static + public assets.
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production \
