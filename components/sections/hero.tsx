@@ -27,7 +27,7 @@ export function Hero() {
               : 'grid items-center gap-12 md:gap-14 lg:gap-16'
           }
         >
-          <div className={hasPortrait ? 'order-2 pb-2 lg:order-1 lg:max-w-[34rem] lg:pb-10' : ''}>
+          <div className={hasPortrait ? 'order-1 pb-2 lg:order-1 lg:max-w-[34rem] lg:pb-10' : ''}>
             <p className="eyebrow inline-flex items-center gap-2">
               <span className="block h-1 w-1 rounded-full bg-[var(--color-gold)]" />
               Vedic Astrology &middot; Personal Consultation
@@ -76,7 +76,7 @@ export function Hero() {
           </div>
 
           {hasPortrait ? (
-            <div className="order-1 flex justify-center lg:order-2 lg:justify-end lg:-mr-2 xl:-mr-4">
+            <div className="order-2 flex justify-center lg:order-2 lg:justify-end lg:-mr-2 xl:-mr-4">
               <HeroPortrait />
             </div>
           ) : null}
