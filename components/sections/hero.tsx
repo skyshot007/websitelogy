@@ -42,6 +42,14 @@ export function Hero() {
                 begins here.
               </span>
             </h1>
+
+            {/* Mobile-only portrait — shown between heading and description */}
+            {hasPortrait ? (
+              <div className="mt-8 lg:hidden">
+                <HeroPortraitMobile />
+              </div>
+            ) : null}
+
             <p
               className={`mt-8 text-[17px] leading-relaxed text-[var(--color-cream)]/75 ${hasPortrait ? 'max-w-lg' : 'max-w-xl'}`}
             >
@@ -75,8 +83,9 @@ export function Hero() {
             </p>
           </div>
 
+          {/* Desktop-only portrait — right column, hidden on mobile */}
           {hasPortrait ? (
-            <div className="order-2 flex justify-center lg:order-2 lg:justify-end lg:-mr-2 xl:-mr-4">
+            <div className="order-2 hidden justify-center lg:flex lg:order-2 lg:justify-end lg:-mr-2 xl:-mr-4">
               <HeroPortrait />
             </div>
           ) : null}
@@ -87,6 +96,26 @@ export function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+function HeroPortraitMobile() {
+  return (
+    <div className="relative mx-auto w-48">
+      <div className="pointer-events-none absolute -inset-3 rounded-full bg-[var(--color-gold)]/10 blur-2xl" />
+      <div className="pointer-events-none absolute -inset-[10%] rounded-full border border-[var(--color-gold)]/20 animate-breathe" />
+      <div className="relative h-48 w-48 overflow-hidden rounded-full ring-1 ring-[var(--color-gold)]/40 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.6)]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-10 bg-gradient-to-t from-[var(--color-midnight)]/30 to-transparent" />
+        <Image
+          src={`/images/portrait/${PORTRAIT_FILE}`}
+          alt={`Portrait of ${SITE.name}`}
+          fill
+          priority
+          sizes="192px"
+          className="object-cover object-[center_8%]"
+        />
+      </div>
+    </div>
   );
 }
 
