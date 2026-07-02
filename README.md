@@ -2,7 +2,7 @@
 
 A premium, minimal, peace-evoking website for a Vedic astrologer. Built as a Phase 1 marketing site on Next.js 15, with the design system and architecture in place to bolt on Phase 1.5 backend modules (Postgres + Auth + in-app chat + Telegram-bot notifications + admin dashboard) and Phase 2 platform features (calculators, Panchang, shop, payments).
 
-**Visual direction:** "Temple at twilight" — luxury wellness × sacred minimalism. Ivory + parchment surfaces, midnight-navy hero, soft-gold accents, Fraunces display serif with Inter body. No glitter, no purple gradients, no zodiac-wheel clichés.
+**Visual direction:** "Saffron" — warm, trustworthy Vedic astrology. Warm-cream surfaces, deep maroon-brown hero/footer, saffron-orange gradient accents, Philosopher display serif with Poppins body. Orange-gradient CTAs, pill badges, and mandala motifs.
 
 ---
 
@@ -13,7 +13,7 @@ A premium, minimal, peace-evoking website for a Vedic astrologer. Built as a Pha
 - **shadcn-style primitives** (Button, Sheet, Accordion) over Radix UI
 - **Framer Motion** + **Lenis** for motion (honors `prefers-reduced-motion`)
 - **Lucide** icons + custom SVG glyphs in `components/brand/`
-- **Fraunces** (display) + **Inter** (body) + **Tiro Devanagari Hindi** (Sanskrit) via `next/font`
+- **Philosopher** (display) + **Poppins** (body) + **Tiro Devanagari Hindi** (Sanskrit) via `next/font`
 - **Sonner** for toasts
 - **React Hook Form + Zod** ready for forms
 
@@ -152,19 +152,19 @@ All tokens live in `app/globals.css` under the `@theme {}` block. Colors are ref
 
 | Token              | Hex        | Usage                                  |
 | ------------------ | ---------- | -------------------------------------- |
-| `--color-ivory`    | `#FAF6EE`  | Primary background (warm white)        |
-| `--color-parchment`| `#F1E9D7`  | Alt surfaces / soft sections           |
-| `--color-sand`     | `#E8DEC6`  | Borders / dividers                     |
-| `--color-midnight` | `#0B1437`  | Hero / footer / CTA band               |
-| `--color-astral`   | `#171B3D`  | Secondary deep surface                 |
-| `--color-gold`     | `#C9A55C`  | Signature accent (used sparingly)      |
-| `--color-gold-soft`| `#E7CF9B`  | Hover/glow gold                        |
-| `--color-vermillion`| `#B8423A` | Sacred red (rare highlight only)       |
-| `--color-lotus`    | `#E9CFC8`  | Warmth in cards                        |
-| `--color-sage`     | `#7C8C7A`  | Calm green                             |
-| `--color-ink`      | `#1A1A1A`  | Primary text on light                  |
-| `--color-muted`    | `#5B5B5B`  | Secondary text                         |
-| `--color-cream`    | `#F4ECDB`  | Primary text on dark                   |
+| `--color-ivory`    | `#FFF7EC`  | Primary background (warm cream)        |
+| `--color-parchment`| `#FFEDD6`  | Alt surfaces / soft saffron sections   |
+| `--color-sand`     | `#FCD9A8`  | Borders / dividers                     |
+| `--color-midnight` | `#401407`  | Hero / footer / CTA band (maroon)      |
+| `--color-astral`   | `#6A2410`  | Secondary deep surface                 |
+| `--color-gold`     | `#F5820A`  | Signature saffron-orange accent        |
+| `--color-gold-soft`| `#FFB454`  | Hover/glow light orange                |
+| `--color-vermillion`| `#D9480F` | Deep orange-red highlight              |
+| `--color-lotus`    | `#FBD7BD`  | Warmth in cards                        |
+| `--color-sage`     | `#A6714B`  | Warm clay neutral                      |
+| `--color-ink`      | `#3A1A08`  | Primary text on light (warm brown)     |
+| `--color-muted`    | `#855C40`  | Secondary text                         |
+| `--color-cream`    | `#FFF3E2`  | Primary text on dark                   |
 
 Guardrails: no more than 2 accent colors visible per viewport; gold is reserved for legacy/trust signals.
 
@@ -234,4 +234,4 @@ The site can also run on Vercel (`pnpm build` + deploy), but the repo is set up 
 - Content lives in `content/*.ts` as typed objects, ready to move to a CMS later
 - All animations honor `prefers-reduced-motion`
 - WCAG 2.1 AA contrast on every token pairing
-- File paths use the `@/` alias rooted at the project
+- File paths use the `@/` alias rooted at th

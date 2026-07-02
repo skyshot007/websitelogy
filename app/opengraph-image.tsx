@@ -18,7 +18,7 @@ export default function Image() {
     (
       <div
         style={{
-          background: '#0B1437',
+          background: '#401407',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -40,7 +40,7 @@ export default function Image() {
             height: 600,
             borderRadius: '50%',
             background:
-              'radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%)',
+              'radial-gradient(circle, rgba(245,130,10,0.18) 0%, transparent 70%)',
           }}
         />
 
@@ -53,9 +53,9 @@ export default function Image() {
             marginBottom: 48,
           }}
         >
-          <div style={{ width: 80, height: 1, background: '#C9A84C', opacity: 0.5 }} />
-          <div style={{ fontSize: 28, color: '#C9A84C' }}>✦</div>
-          <div style={{ width: 80, height: 1, background: '#C9A84C', opacity: 0.5 }} />
+          <div style={{ width: 80, height: 1, background: '#F5820A', opacity: 0.6 }} />
+          <div style={{ fontSize: 28, color: '#F5820A' }}>✦</div>
+          <div style={{ width: 80, height: 1, background: '#F5820A', opacity: 0.6 }} />
         </div>
 
         {/* Site name */}
@@ -63,7 +63,7 @@ export default function Image() {
           style={{
             fontSize: 80,
             fontWeight: 300,
-            color: '#FAF6EE',
+            color: '#FFF3E2',
             letterSpacing: '-0.02em',
             textAlign: 'center',
             lineHeight: 1,
@@ -76,7 +76,7 @@ export default function Image() {
         <div
           style={{
             fontSize: 28,
-            color: '#C9A84C',
+            color: '#FFB454',
             marginTop: 28,
             fontStyle: 'italic',
             textAlign: 'center',
@@ -103,10 +103,10 @@ export default function Image() {
                 key={label}
                 style={{
                   padding: '8px 20px',
-                  border: '1px solid rgba(201,168,76,0.35)',
+                  border: '1px solid rgba(245,130,10,0.45)',
                   borderRadius: 40,
                   fontSize: 18,
-                  color: '#8894B0',
+                  color: '#FFD9AE',
                   letterSpacing: '0.04em',
                 }}
               >

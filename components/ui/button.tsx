@@ -11,7 +11,7 @@ const buttonVariants = cva(
         primary:
           'bg-[var(--color-midnight)] text-[var(--color-cream)] hover:bg-[var(--color-astral)] hover:shadow-[0_8px_30px_-12px_rgba(201,165,92,0.45)]',
         gold:
-          'bg-[var(--color-gold)] text-[var(--color-midnight)] hover:bg-[var(--color-gold-soft)]',
+          'bg-gradient-gold text-[var(--color-midnight)] shadow-gold hover:brightness-105 hover:-translate-y-0.5',
         outline:
           'border border-[var(--color-gold)]/70 bg-transparent text-current hover:bg-[var(--color-gold)]/10 hover:border-[var(--color-gold)]',
         outlineLight:
