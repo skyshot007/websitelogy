@@ -1,41 +1,33 @@
-import { Reveal, RevealGroup, RevealItem } from '@/components/motion/reveal';
+import { RevealGroup, RevealItem } from '@/components/motion/reveal';
+import { SectionHeader } from './section-header';
 import { PILLARS } from '@/content/pillars';
 
 export function WhyChooseUs() {
   return (
     <section className="surface-parchment section-pad">
       <div className="container-page">
-        <Reveal className="max-w-2xl">
-          <p className="eyebrow">What makes this different</p>
-          <h2 className="mt-4 text-[var(--color-ink)]">
-            Held by a person,
-            <span className="display-italic block text-[var(--color-midnight)]">
-              never by an algorithm.
-            </span>
-          </h2>
-        </Reveal>
+        <SectionHeader
+          badge="Why Choose Us"
+          title={
+            <>
+              Held by a person,{' '}
+              <span className="display-italic text-[var(--color-gold)]">never an algorithm</span>
+            </>
+          }
+          subtitle="Real guidance, rooted in your chart and delivered with honesty — here is what sets the practice apart."
+        />
 
-        <RevealGroup className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-[var(--color-ink)]/8 bg-[var(--color-ink)]/8 sm:grid-cols-2">
+        <RevealGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PILLARS.map((pillar) => {
             const Glyph = pillar.glyph;
             return (
               <RevealItem key={pillar.title}>
-                <article className="surface-ivory flex h-full gap-6 p-8 md:p-10">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[var(--color-gold)]/40 text-[var(--color-gold)]">
-                    <Glyph className="h-6 w-6" />
+                <article className="group flex h-full gap-5 rounded-3xl border border-[var(--color-gold)]/15 bg-[var(--color-ivory)] p-7 shadow-[0_10px_40px_-24px_rgba(64,20,7,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-gold)]/45 hover:shadow-[0_22px_50px_-20px_rgba(245,130,10,0.4)] md:p-8">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-gold text-[var(--color-midnight)] shadow-gold">
+                    <Glyph className="h-7 w-7" />
                   </div>
                   <div>
                     <h3 className="text-[var(--color-ink)]">{pillar.title}</h3>
-                    <p className="mt-3 text-[var(--color-muted)] leading-relaxed">
+                    <p className="mt-3 leading-relaxed text-[var(--color-muted)]">
                       {pillar.description}
-                    </p>
-                  </div>
-                </article>
-              </RevealItem>
-            );
-          })}
-        </RevealGroup>
-      </div>
-    </section>
-  );
-}
+       
