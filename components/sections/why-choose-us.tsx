@@ -30,4 +30,14 @@ export function WhyChooseUs() {
                     <h3 className="text-[var(--color-ink)]">{pillar.title}</h3>
                     <p className="mt-3 leading-relaxed text-[var(--color-muted)]">
                       {pillar.description}
-       
+                    </p>
+                  </div>
+                </article>
+              </RevealItem>
+            );
+          })}
+        </RevealGroup>
+      </div>
+    </section>
+  );
+}

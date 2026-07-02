@@ -33,4 +33,7 @@ export function HowItWorks() {
             ))}
           </RevealGroup>
         </div>
-      
+      </div>
+    </section>
+  );
+}
