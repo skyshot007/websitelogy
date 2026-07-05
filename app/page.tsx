@@ -17,11 +17,11 @@ export default function HomePage() {
     <>
       <Hero />
       <TrustStrip />
+      <LoveProblem />
       <ServicesSection />
       <AboutSection />
       <HowItWorks />
       <WhyChooseUs />
-      <LoveProblem />
       <FeatureGate flag="marketing.testimonials">
         <Testimonials />
       </FeatureGate>

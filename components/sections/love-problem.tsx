@@ -7,54 +7,52 @@ const WA_LINK = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(
 
 export function LoveProblem() {
   return (
-    <section className="surface-ivory section-pad">
+    <section className="section-pad bg-gradient-to-b from-[var(--color-ivory)] to-[var(--color-parchment)]">
       <div className="container-page">
-        <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] border border-[var(--color-gold)]/25 bg-[var(--color-parchment)] px-6 py-12 shadow-[0_24px_70px_-34px_rgba(64,20,7,0.45)] sm:px-10 md:px-14 md:py-16">
-            <div className="grid items-center gap-10 md:grid-cols-2 md:gap-6">
-              {/* Copy */}
-              <div className="text-center md:text-left">
-                <h2 className="text-4xl font-bold uppercase leading-[1.03] tracking-tight sm:text-5xl lg:text-[3.4rem]">
-                  <span className="block text-[var(--color-ink)]">All Love Problem</span>
-                  <span className="block text-[var(--color-vermillion)]">Solution</span>
-                </h2>
+        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+          {/* Copy */}
+          <Reveal>
+            <h2 className="text-4xl font-bold uppercase leading-[1.03] tracking-tight sm:text-5xl lg:text-[3.4rem]">
+              <span className="block text-[var(--color-ink)]">All Love Problem</span>
+              <span className="block text-[var(--color-vermillion)]">Solution</span>
+            </h2>
 
-                <div className="mt-6 flex items-center justify-center gap-3 md:justify-start">
-                  <span className="h-px w-14 bg-[var(--color-gold)]/60" />
-                  <HeartTiny className="h-4 w-4 text-[var(--color-gold)]" />
-                  <span className="h-px w-14 bg-[var(--color-gold)]/60" />
-                </div>
-
-                <p className="mx-auto mt-6 max-w-md text-[var(--color-muted)] md:mx-0">
-                  Get expert astrology guidance for love, relationship and marriage.
-                </p>
-
-                <div className="mt-8 flex justify-center md:justify-start">
-                  <a
-                    href={WA_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-[var(--color-vermillion)] px-8 text-[15px] font-semibold text-white shadow-[0_16px_34px_-14px_rgba(217,72,15,0.65)] transition hover:-translate-y-0.5 hover:brightness-110"
-                  >
-                    <WhatsAppIcon className="h-5 w-5" />
-                    Talk to Astrologer
-                  </a>
-                </div>
-              </div>
-
-              {/* Graphic */}
-              <div className="flex flex-col items-center">
-                <HeartZodiac className="w-full max-w-[20rem]" />
-                <p className="mt-3 font-display text-2xl font-bold text-[var(--color-ink)]">
-                  Astro Anil Joshi
-                </p>
-                <span className="mt-1 text-[10px] uppercase tracking-[0.34em] text-[var(--color-gold)]">
-                  Jivan Margdarshak
-                </span>
-              </div>
+            <div className="mt-6 flex items-center gap-3">
+              <span className="h-px w-14 bg-[var(--color-gold)]/60" />
+              <HeartTiny className="h-4 w-4 text-[var(--color-gold)]" />
+              <span className="h-px w-14 bg-[var(--color-gold)]/60" />
             </div>
-          </div>
-        </Reveal>
+
+            <p className="mt-6 max-w-md text-[var(--color-muted)]">
+              Get expert astrology guidance for love, relationship and marriage.
+            </p>
+
+            <div className="mt-9">
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-[var(--color-vermillion)] px-8 text-[15px] font-semibold text-white shadow-[0_16px_34px_-14px_rgba(217,72,15,0.65)] transition hover:-translate-y-0.5 hover:brightness-110"
+              >
+                <WhatsAppIcon className="h-5 w-5" />
+                Talk to Astrologer
+              </a>
+            </div>
+          </Reveal>
+
+          {/* Graphic */}
+          <Reveal delay={0.1}>
+            <div className="flex flex-col items-center">
+              <HeartZodiac className="w-full max-w-[22rem]" />
+              <p className="mt-3 font-display text-2xl font-bold text-[var(--color-ink)]">
+                Astro Anil Joshi
+              </p>
+              <span className="mt-1 text-[10px] uppercase tracking-[0.34em] text-[var(--color-gold)]">
+                Jivan Margdarshak
+              </span>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
@@ -94,16 +92,14 @@ function HeartZodiac({ className }: { className?: string }) {
         </radialGradient>
       </defs>
 
-      {/* Zodiac wheel */}
-      <circle cx="160" cy="160" r="142" fill="none" stroke="var(--color-gold)" strokeOpacity="0.28" strokeWidth="1" />
-      <circle cx="160" cy="160" r="120" fill="none" stroke="var(--color-gold)" strokeOpacity="0.18" strokeWidth="1" />
-      <g fill="var(--color-gold)" fillOpacity="0.38" fontSize="16" textAnchor="middle" style={{ dominantBaseline: 'central' }}>
+      <circle cx="160" cy="160" r="142" fill="none" stroke="var(--color-gold)" strokeOpacity="0.3" strokeWidth="1" />
+      <circle cx="160" cy="160" r="120" fill="none" stroke="var(--color-gold)" strokeOpacity="0.2" strokeWidth="1" />
+      <g fill="var(--color-gold)" fillOpacity="0.4" fontSize="16" textAnchor="middle" style={{ dominantBaseline: 'central' }}>
         {signs.map((s, i) => (
           <text key={i} x={pos[i][0]} y={pos[i][1]}>{s}</text>
         ))}
       </g>
 
-      {/* Outer ribbon heart */}
       <path
         d="M160 250 C92 200 52 152 52 114 C52 86 74 66 100 66 C126 66 148 84 160 110 C172 84 194 66 220 66 C246 66 268 86 268 114 C268 152 228 200 160 250 Z"
         fill="none"
@@ -113,7 +109,6 @@ function HeartZodiac({ className }: { className?: string }) {
         strokeLinecap="round"
       />
 
-      {/* Two solid couple hearts */}
       <g transform="translate(112 118) scale(1.05)">
         <path d={heartD} fill="url(#heartFill)" />
       </g>
@@ -121,7 +116,6 @@ function HeartZodiac({ className }: { className?: string }) {
         <path d={heartD} fill="url(#heartFill)" opacity="0.96" />
       </g>
 
-      {/* Sparkles */}
       <g fill="var(--color-gold)" fillOpacity="0.7">
         <path d="M250 92 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 z" />
         <path d="M74 214 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5 z" />
