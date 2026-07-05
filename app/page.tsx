@@ -4,6 +4,7 @@ import { ServicesSection } from '@/components/sections/services-section';
 import { AboutSection } from '@/components/sections/about-section';
 import { HowItWorks } from '@/components/sections/how-it-works';
 import { WhyChooseUs } from '@/components/sections/why-choose-us';
+import { LoveProblem } from '@/components/sections/love-problem';
 import { Testimonials } from '@/components/sections/testimonials';
 import { StatsSection } from '@/components/sections/stats';
 import { JournalTeaser } from '@/components/sections/journal-teaser';
@@ -20,6 +21,7 @@ export default function HomePage() {
       <AboutSection />
       <HowItWorks />
       <WhyChooseUs />
+      <LoveProblem />
       <FeatureGate flag="marketing.testimonials">
         <Testimonials />
       </FeatureGate>

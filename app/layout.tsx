@@ -6,6 +6,7 @@ import { SiteJsonLd } from '@/components/seo/json-ld';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { StickyBookButton } from '@/components/layout/sticky-book-button';
+import { WhatsAppFloat } from '@/components/layout/whatsapp-float';
 import { LenisProvider } from '@/components/motion/lenis-provider';
 import { Toaster } from 'sonner';
 
@@ -90,6 +91,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <main className="flex-1">{children}</main>
           <Footer />
           <StickyBookButton />
+          <WhatsAppFloat />
         </LenisProvider>
         <Toaster
           position="bottom-right"
