@@ -75,11 +75,6 @@ function WhatsAppIcon({ className }: { className?: string }) {
 }
 
 function HeartZodiac({ className }: { className?: string }) {
-  const signs = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
-  const pos = [
-    [160, 34], [224, 50], [270, 96], [288, 160], [270, 224], [224, 270],
-    [160, 286], [96, 270], [50, 224], [32, 160], [50, 96], [96, 50],
-  ];
   const heartD =
     'M32 58 C11 43 4 31 4 20 C4 10 12 4 20 4 C26 4 30 8 32 12 C34 8 38 4 44 4 C52 4 60 10 60 20 C60 31 53 43 32 58 Z';
   return (
@@ -91,14 +86,6 @@ function HeartZodiac({ className }: { className?: string }) {
           <stop offset="100%" stopColor="#a5140f" />
         </radialGradient>
       </defs>
-
-      <circle cx="160" cy="160" r="142" fill="none" stroke="var(--color-gold)" strokeOpacity="0.3" strokeWidth="1" />
-      <circle cx="160" cy="160" r="120" fill="none" stroke="var(--color-gold)" strokeOpacity="0.2" strokeWidth="1" />
-      <g fill="var(--color-gold)" fillOpacity="0.4" fontSize="16" textAnchor="middle" style={{ dominantBaseline: 'central' }}>
-        {signs.map((s, i) => (
-          <text key={i} x={pos[i][0]} y={pos[i][1]}>{s}</text>
-        ))}
-      </g>
 
       <path
         d="M160 250 C92 200 52 152 52 114 C52 86 74 66 100 66 C126 66 148 84 160 110 C172 84 194 66 220 66 C246 66 268 86 268 114 C268 152 228 200 160 250 Z"
