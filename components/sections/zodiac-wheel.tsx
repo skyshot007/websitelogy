@@ -52,17 +52,17 @@ export function ZodiacWheel({ className }: { className?: string }) {
     <div className={className} aria-hidden="true">
       <div className="h-full w-full origin-center animate-spin-slow">
         <svg viewBox="0 0 400 400" className="h-full w-full" fill="none" stroke="var(--color-gold)">
-          <g strokeOpacity="0.3" strokeWidth="1">
+          <g strokeOpacity="0.4" strokeWidth="1">
             <circle cx={C} cy={C} r="198" />
             <circle cx={C} cy={C} r="176" />
             <circle cx={C} cy={C} r="150" />
             <circle cx={C} cy={C} r="120" />
             <circle cx={C} cy={C} r="9" />
           </g>
-          <g strokeOpacity="0.4" strokeWidth="1">{ticks}</g>
-          <g strokeOpacity="0.32" strokeWidth="1">{spokes}</g>
-          <polygon points={starPts} strokeOpacity="0.24" strokeWidth="1" />
-          <g fill="var(--color-gold)" fillOpacity="0.55" stroke="none" fontSize="19">
+          <g strokeOpacity="0.5" strokeWidth="1.1">{ticks}</g>
+          <g strokeOpacity="0.42" strokeWidth="1">{spokes}</g>
+          <polygon points={starPts} strokeOpacity="0.3" strokeWidth="1" />
+          <g fill="var(--color-gold)" fillOpacity="0.72" stroke="none" fontSize="19">
             {glyphs}
           </g>
         </svg>
