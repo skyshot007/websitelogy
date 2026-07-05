@@ -322,3 +322,17 @@
 .animate-breathe {
   animation: breathe 5s ease-in-out infinite;
 }
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 140s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: spin-slow 160s linear infinite reverse;
+}

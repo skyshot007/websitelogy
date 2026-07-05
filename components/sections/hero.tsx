@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Constellation } from './constellation';
+import { ZodiacWheel } from './zodiac-wheel';
 import { ArrowRight } from 'lucide-react';
 import { SITE } from '@/lib/utils';
 
@@ -102,6 +103,7 @@ export function Hero() {
 function HeroPortraitMobile() {
   return (
     <div className="relative mx-auto w-48">
+      <ZodiacWheel className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[185%] w-[185%] -translate-x-1/2 -translate-y-1/2 opacity-70" />
       <div className="pointer-events-none absolute -inset-3 rounded-full bg-[var(--color-gold)]/10 blur-2xl" />
       <div className="pointer-events-none absolute -inset-[10%] rounded-full border border-[var(--color-gold)]/20 animate-breathe" />
       <div className="relative h-48 w-48 overflow-hidden rounded-full ring-1 ring-[var(--color-gold)]/40 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.6)]">
@@ -122,7 +124,7 @@ function HeroPortraitMobile() {
 function HeroPortrait() {
   return (
     <div className="relative mx-auto w-full max-w-[min(100%,26rem)] sm:max-w-[30rem] md:max-w-[34rem] lg:max-w-[38rem] xl:max-w-[42rem]">
-      <HeroPortraitGeometry className="pointer-events-none absolute -inset-[12%] -z-10 h-[132%] w-[132%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[var(--color-gold)]" />
+      <ZodiacWheel className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 opacity-80" />
 
       <div className="pointer-events-none absolute -inset-8 rounded-[2.75rem] bg-[var(--color-gold)]/16 blur-3xl" />
       <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-[var(--color-gold-soft)]/10 blur-2xl" />
@@ -154,65 +156,6 @@ function HeroPortrait() {
         style={{ animationDelay: '2.4s' }}
       />
     </div>
-  );
-}
-
-function HeroPortraitGeometry({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 200 240"
-      fill="none"
-      aria-hidden="true"
-    >
-      <circle cx="100" cy="118" r="92" stroke="currentColor" strokeOpacity="0.14" strokeWidth="0.75" />
-      <circle cx="100" cy="118" r="72" stroke="currentColor" strokeOpacity="0.1" strokeWidth="0.6" />
-      <circle cx="100" cy="118" r="52" stroke="currentColor" strokeOpacity="0.08" strokeWidth="0.5" />
-
-      <path
-        d="M100 26 L170 118 L100 210 L30 118 Z"
-        stroke="currentColor"
-        strokeOpacity="0.12"
-        strokeWidth="0.65"
-      />
-      <path
-        d="M100 46 L150 118 L100 190 L50 118 Z"
-        stroke="currentColor"
-        strokeOpacity="0.08"
-        strokeWidth="0.5"
-      />
-
-      <g stroke="currentColor" strokeOpacity="0.16" strokeWidth="0.55">
-        <path d="M28 118 A72 72 0 0 1 172 118" />
-        <path d="M100 46 A72 72 0 0 0 100 190" />
-      </g>
-
-      <g stroke="#F4ECDB" strokeOpacity="0.1" strokeWidth="0.45">
-        <path d="M100 18 L100 38 M100 198 L100 218 M18 118 L38 118 M162 118 L182 118" />
-        <path d="M52 52 L64 64 M148 52 L136 64 M52 184 L64 172 M148 184 L136 172" />
-      </g>
-
-      <circle cx="100" cy="118" r="2.5" fill="currentColor" fillOpacity="0.35" />
-      <circle cx="100" cy="26" r="1.5" fill="#F4ECDB" fillOpacity="0.45" className="animate-twinkle" />
-      <circle
-        cx="170"
-        cy="118"
-        r="1.2"
-        fill="currentColor"
-        fillOpacity="0.4"
-        className="animate-twinkle"
-        style={{ animationDelay: '1.8s' }}
-      />
-      <circle
-        cx="30"
-        cy="118"
-        r="1.2"
-        fill="currentColor"
-        fillOpacity="0.4"
-        className="animate-twinkle"
-        style={{ animationDelay: '0.6s' }}
-      />
-    </svg>
   );
 }
 
