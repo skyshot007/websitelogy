@@ -15,7 +15,7 @@ export function Navbar() {
     <NavbarScroll>
       <div className="container-page flex h-20 items-center justify-between">
         <Link href="/" aria-label="Home" className="focus-visible:outline-none">
-          <Wordmark />
+          <Wordmark className="text-[var(--color-midnight)]" />
         </Link>
 
         <nav className="hidden items-center gap-10 md:flex" aria-label="Primary">

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description:
       'Slow reading on Vedic astrology, Jyotish practice, and the small disciplines of clarity.',
     url: `${SITE.url}/blog`,
-    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Anil Astro Journal' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Astro Anil Joshi Journal' }],
   },
 };
 

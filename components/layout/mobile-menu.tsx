@@ -31,7 +31,7 @@ export function MobileMenu({ links, showSignIn = false }: MobileMenuProps) {
       <SheetContent side="right" className="flex flex-col">
         <SheetTitle className="sr-only">Navigation</SheetTitle>
         <div className="flex items-center justify-between">
-          <Wordmark />
+          <Wordmark className="text-[var(--color-midnight)]" />
         </div>
 
         <YantraDivider className="my-2" />

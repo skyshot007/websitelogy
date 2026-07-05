@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]): string {
 }
 
 export const SITE = {
-  name: process.env.NEXT_PUBLIC_SITE_NAME ?? 'Anil Astro',
+  name: process.env.NEXT_PUBLIC_SITE_NAME ?? 'Astro Anil Joshi',
   tagline: 'A deeper understanding of your life begins here',
   description:
     'Refined Vedic astrology guidance for clear decisions in life, career, relationships, and inner growth.',

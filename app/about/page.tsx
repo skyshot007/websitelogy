@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description:
       'Meet Anil Joshi — 22 years of classical Parashari Jyotish. Trained in Varanasi and Bengaluru. Bilingual sessions in English and Hindi.',
     url: `${SITE.url}/about`,
-    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'About Anil Astro' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'About Astro Anil Joshi' }],
   },
 };
 

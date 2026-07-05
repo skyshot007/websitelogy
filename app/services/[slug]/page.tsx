@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: `${service.tagline} ${priceStr}${durationStr}. By Anil Joshi — classical Jyotish practitioner.`,
     alternates: { canonical: `${SITE.url}/services/${service.slug}` },
     openGraph: {
-      title: `${service.name} — Anil Astro`,
+      title: `${service.name} — Astro Anil Joshi`,
       description: `${service.tagline} ${priceStr}${durationStr}.`,
       url: `${SITE.url}/services/${service.slug}`,
       images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: service.name }],

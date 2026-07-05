@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description:
       'Reserve your private session with Anil Joshi. Honest, chart-rooted guidance for the question that won\'t leave you.',
     url: `${SITE.url}/book`,
-    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Book Anil Astro' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Book Astro Anil Joshi' }],
   },
 };
 

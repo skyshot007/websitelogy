@@ -9,7 +9,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'Anil Astro — Vedic Astrology Guidance';
+export const alt = 'Astro Anil Joshi — Vedic Astrology Guidance';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -69,7 +69,7 @@ export default function Image() {
             lineHeight: 1,
           }}
         >
-          Anil Astro
+          Astro Anil Joshi
         </div>
 
         {/* Tagline */}

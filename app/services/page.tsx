@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description:
       'Private consultations, hand-prepared Kundli, couple compatibility, online pujas, gemstone guidance, and astrology courses by Anil Joshi.',
     url: `${SITE.url}/services`,
-    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Anil Astro Services' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Astro Anil Joshi Services' }],
   },
 };
 

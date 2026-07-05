@@ -7,15 +7,15 @@ import { SITE } from '@/lib/utils';
 import { Mail, Phone, MessageCircle, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Contact Anil Astro',
+  title: 'Contact Astro Anil Joshi',
   description:
     'Get in touch with Anil Joshi for questions about Vedic astrology, consultations, or remedies. We always reply within a working day.',
   alternates: { canonical: `${SITE.url}/contact` },
   openGraph: {
-    title: 'Contact Anil Astro',
+    title: 'Contact Astro Anil Joshi',
     description: 'Write to Anil Joshi for questions about astrology, consultations, or remedies. We always reply.',
     url: `${SITE.url}/contact`,
-    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Contact Anil Astro' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Contact Astro Anil Joshi' }],
   },
 };
 

@@ -176,16 +176,57 @@ export function YantraDivider({ className }: { className?: string }) {
   );
 }
 
-export function Wordmark({ className }: { className?: string }) {
+export function LotusMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 200 132" className={className} fill="currentColor" aria-hidden="true">
+      {/* outer sweeping petals */}
+      <path d="M100 120 C74 118 40 110 20 92 C40 99 78 108 100 122 Z" />
+      <path d="M100 120 C126 118 160 110 180 92 C160 99 122 108 100 122 Z" />
+      {/* outer side petals */}
+      <path d="M100 118 C76 108 48 92 44 60 C62 74 90 100 100 118 Z" />
+      <path d="M100 118 C124 108 152 92 156 60 C138 74 110 100 100 118 Z" />
+      {/* inner side petals */}
+      <path d="M100 118 C84 100 66 70 72 38 C86 60 96 92 100 118 Z" />
+      <path d="M100 118 C116 100 134 70 128 38 C114 60 104 92 100 118 Z" />
+      {/* central petal */}
+      <path d="M100 118 C88 96 88 48 100 20 C112 48 112 96 100 118 Z" />
+      {/* base boat sweep */}
+      <path d="M26 108 C56 128 144 128 174 108 C148 120 52 120 26 108 Z" />
+    </svg>
+  );
+}
+
+export function Wordmark({
+  className,
+  layout = 'horizontal',
+}: {
+  className?: string;
+  layout?: 'horizontal' | 'stacked';
+}) {
+  if (layout === 'stacked') {
+    return (
+      <span className={`inline-flex flex-col items-center text-center ${className ?? ''}`}>
+        <LotusMark className="h-14 w-auto" />
+        <span className="mt-2 font-display text-xl font-bold uppercase leading-none tracking-[0.16em]">
+          Astro Anil Joshi
+        </span>
+        <span className="mt-1.5 text-[9px] uppercase leading-none tracking-[0.34em] opacity-75">
+          Jivan Margdarshak
+        </span>
+      </span>
+    );
+  }
+
   return (
     <span className={`inline-flex items-center gap-2.5 ${className ?? ''}`}>
-      <span className="relative flex h-9 w-9 items-center justify-center">
-        <span className="absolute inset-0 rounded-full border border-[var(--color-gold)]/60" />
-        <span className="absolute inset-1 rounded-full border border-[var(--color-gold)]/30" />
-        <LotusGlyph className="h-5 w-5 text-[var(--color-gold)]" />
-      </span>
-      <span className="font-display text-[1.35rem] tracking-tight leading-none">
-        Anil <span className="italic font-light">Astro</span>
+      <LotusMark className="h-9 w-auto shrink-0" />
+      <span className="flex flex-col leading-none">
+        <span className="font-display text-[1.1rem] font-bold uppercase leading-none tracking-[0.1em]">
+          Astro Anil Joshi
+        </span>
+        <span className="mt-1 text-[7.5px] uppercase leading-none tracking-[0.28em] opacity-75">
+          Jivan Margdarshak
+        </span>
       </span>
     </span>
   );
