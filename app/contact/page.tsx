@@ -57,9 +57,10 @@ export default function ContactPage() {
           />
           <Channel
             icon={MessageCircle}
-            label="Chat"
-            primary="Coming soon"
-            note="Continuous chat is being polished."
+            label="WhatsApp"
+            primary="Chat on WhatsApp"
+            href={`https://wa.me/${SITE.whatsapp}`}
+            note="Message us directly — quickest replies."
           />
         </div>
 
@@ -90,9 +91,11 @@ function Channel({
   note: string;
 }) {
   const Wrapper: React.ElementType = href ? 'a' : 'div';
+  const external = href?.startsWith('http');
   return (
     <Wrapper
       {...(href ? { href } : {})}
+      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       className="surface-ivory group flex flex-col items-center gap-4 p-8 text-center transition-colors hover:bg-[var(--color-parchment)]"
     >
       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--color-gold)]/40 text-[var(--color-gold)]">
