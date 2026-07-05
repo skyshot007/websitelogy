@@ -87,13 +87,6 @@ export function Constellation({ className }: { className?: string }) {
           />
         </g>
       ))}
-      {/* Moon, top-right */}
-      <g transform="translate(82,18)">
-        <circle r="6" fill="#F1E9D7" opacity="0.95" />
-        <circle r="6" cx="2.5" cy="-1.5" fill="#0B1437" />
-        <circle r="0.4" cx="-2" cy="2" fill="#C9A55C" opacity="0.7" />
-        <circle r="0.3" cx="1" cy="3.5" fill="#C9A55C" opacity="0.6" />
-      </g>
     </svg>
   );
 }
