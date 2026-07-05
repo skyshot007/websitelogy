@@ -103,7 +103,7 @@ export function Hero() {
 function HeroPortraitMobile() {
   return (
     <div className="relative mx-auto w-48">
-      <ZodiacWheel className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[185%] w-[185%] -translate-x-1/2 -translate-y-1/2 opacity-70" />
+      <ZodiacWheel className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 opacity-70" />
       <div className="pointer-events-none absolute -inset-3 rounded-full bg-[var(--color-gold)]/10 blur-2xl" />
       <div className="pointer-events-none absolute -inset-[10%] rounded-full border border-[var(--color-gold)]/20 animate-breathe" />
       <div className="relative h-48 w-48 overflow-hidden rounded-full ring-1 ring-[var(--color-gold)]/40 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.6)]">
@@ -124,7 +124,7 @@ function HeroPortraitMobile() {
 function HeroPortrait() {
   return (
     <div className="relative mx-auto w-full max-w-[min(100%,26rem)] sm:max-w-[30rem] md:max-w-[34rem] lg:max-w-[38rem] xl:max-w-[42rem]">
-      <ZodiacWheel className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[165%] w-[165%] -translate-x-1/2 -translate-y-1/2 opacity-80" />
+      <ZodiacWheel className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[125%] w-[125%] -translate-x-1/2 -translate-y-1/2 opacity-80" />
 
       <div className="pointer-events-none absolute -inset-8 rounded-[2.75rem] bg-[var(--color-gold)]/16 blur-3xl" />
       <div className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-[var(--color-gold-soft)]/10 blur-2xl" />
