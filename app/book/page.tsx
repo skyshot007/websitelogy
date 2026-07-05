@@ -18,7 +18,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BookPage() {
+export default async function BookPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ service?: string }>;
+}) {
+  const { service = '' } = await searchParams;
   return (
     <section className="surface-ivory pt-36 pb-24">
       <div className="container-page">
@@ -56,7 +61,7 @@ export default function BookPage() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <BookingFormShell />
+            <BookingFormShell defaultService={service} />
           </Reveal>
         </div>
       </div>
